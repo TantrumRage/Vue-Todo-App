@@ -21,7 +21,7 @@
           <span class="pointer mr-2">
             <i class="fas fa-edit"></i>
           </span>
-          <span class="pointer">
+          <span class="pointer" @click="deleteTodoItem(todo)">
             <i class="fas fa-trash-alt"></i>
           </span>
         </div>
@@ -60,6 +60,10 @@ export default {
       this.todos.push({ text: this.addTodoItemText, done: false });
       this.addTodoItemText = "";
       this.submitBtnVisible = !this.submitBtnVisible;
+    },
+    deleteTodoItem(todo) {
+      let itemIndex = this.todos.indexOf(todo);
+      this.todos.splice(itemIndex, 1);
     }
   }
 };
