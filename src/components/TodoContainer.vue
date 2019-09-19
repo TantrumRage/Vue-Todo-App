@@ -7,7 +7,8 @@
       <div class="row" v-for="todo in todos">
         <div class="col-2">
           <span>
-            <input type="checkbox" class="pointer" />
+            <input type="checkbox" class="pointer" :checked="todo.done" 
+            @click="todo.done = !todo.done" />
           </span>
         </div>
         <div class="col-7 text-left pl-0 done" v-if="todo.done">
