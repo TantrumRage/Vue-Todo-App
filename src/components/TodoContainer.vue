@@ -24,9 +24,19 @@
       </div>
     </div>
     <div id="todo-footer" class="col-12 bg-light text-center p-2 pb-4">
-      <button class="btn btn-sm btn-outline-success">
+      <button
+        class="btn btn-sm btn-outline-success"
+        v-show="submitBtnVisible"
+        @click="submitBtnVisible = !submitBtnVisible"
+      >
         Add New
       </button>
+      <div v-show="!submitBtnVisible">
+        <input type="text" class="form-control" v-model="addTodoItemText" />
+        <button class="btn btn-sm btn-success mt-2" @click="addTodoItem()">
+          Done
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -35,9 +45,19 @@
 export default {
   name: "Test",
   data: function() {
-    return {};
+    return {
+      todos: [],
+      submitBtnVisible: true,
+      addTodoItemText: ""
+    };
   },
-  methods: {}
+  methods: {
+    addTodoItem() {
+      this.todos.push({ text: this.addTodoItemText, done: false });
+      this.addTodoItemText = "";
+      this.submitBtnVisible = !this.submitBtnVisible;
+    }
+  }
 };
 </script>
 
