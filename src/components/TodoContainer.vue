@@ -4,14 +4,14 @@
       <h1 class="text-center border-bottom">Todo</h1>
     </div>
     <div id="todo-content" class="col-12 text-center pt-2">
-      <div class="row">
+      <div class="row" v-for="todo in todos">
         <div class="col-2">
           <span>
             <input type="checkbox" class="pointer" />
           </span>
         </div>
         <div class="col-7 text-left pl-0">
-          This is a sample todo.
+          {{todo.text}}
         </div>
         <div class="col-3">
           <span class="pointer mr-2">
