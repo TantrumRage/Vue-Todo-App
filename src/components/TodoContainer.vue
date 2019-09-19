@@ -10,7 +10,10 @@
             <input type="checkbox" class="pointer" />
           </span>
         </div>
-        <div class="col-7 text-left pl-0">
+        <div class="col-7 text-left pl-0 done" v-if="todo.done">
+          {{todo.text}}
+        </div>
+        <div class="col-7 text-left pl-0" v-else>
           {{todo.text}}
         </div>
         <div class="col-3">
