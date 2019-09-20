@@ -5,7 +5,7 @@
     </div>
     <div id="todo-content" class="col-12 text-center pt-2">
       <div class="row" v-for="todo in todos">
-        <div class="col-2">
+        <div class="col-2" v-if="!todo.editTodo">
           <span>
             <input type="checkbox" class="pointer" :checked="todo.done" 
             @click="todo.done = !todo.done" />
@@ -19,7 +19,7 @@
             {{todo.text}}
           </div>	
         </div>
-        <div class="col-7 text-left p-0" v-else>
+        <div class="col-9 text-left p-0 pl-3" v-else>
           <input type="text" class="form-control" v-model="todo.editTodoText">
         </div>
         <div class="col-3">
@@ -35,7 +35,7 @@
           	<span class="pointer mr-2" @click="editTodo(todo)">
               <i class="fas fa-check"></i>
             </span>
-            <span class="pointer">
+            <span class="pointer" @click="cancelEditTodo(todo)">
               <i class="fas fa-times"></i>
             </span>	
           </div>	
@@ -89,6 +89,10 @@ export default {
       todo.text = todo.editTodoText; 
       todo.editTodo = false;
     },
+    cancelEditTodo(todo) {
+      todo.editTodoText = todo.text;
+      todo.editTodo = false;
+    }
   }
 };
 </script>
