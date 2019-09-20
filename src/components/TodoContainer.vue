@@ -11,19 +11,34 @@
             @click="todo.done = !todo.done" />
           </span>
         </div>
-        <div class="col-7 text-left pl-0 done" v-if="todo.done">
-          {{todo.text}}
+        <div class="col-7 text-left pl-0" v-if="!todo.editTodo">
+          <div class="done" v-if="todo.done">
+            {{todo.text}}
+          </div>
+          <div v-else>
+            {{todo.text}}
+          </div>	
         </div>
-        <div class="col-7 text-left pl-0" v-else>
-          {{todo.text}}
+        <div class="col-7 text-left p-0" v-else>
+          <input type="text" class="form-control" v-model="todo.editTodoText">
         </div>
         <div class="col-3">
-          <span class="pointer mr-2">
-            <i class="fas fa-edit"></i>
-          </span>
-          <span class="pointer" @click="deleteTodoItem(todo)">
-            <i class="fas fa-trash-alt"></i>
-          </span>
+          <div v-if="todo.editTodo == false">
+            <span class="pointer mr-2" @click="todo.editTodo = true">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span class="pointer" @click="deleteTodoItem(todo)">
+              <i class="fas fa-trash-alt"></i>
+            </span>	
+          </div>
+          <div v-else>
+          	<span class="pointer mr-2" @click="editTodo(todo)">
+              <i class="fas fa-check"></i>
+            </span>
+            <span class="pointer">
+              <i class="fas fa-times"></i>
+            </span>	
+          </div>	
         </div>
       </div>
     </div>
@@ -52,19 +67,28 @@ export default {
     return {
       todos: [],
       submitBtnVisible: true,
-      addTodoItemText: ""
+      addTodoItemText: "",
     };
   },
   methods: {
     addTodoItem() {
-      this.todos.push({ text: this.addTodoItemText, done: false });
+      this.todos.push({
+      	text: this.addTodoItemText,
+      	done: false,
+      	editTodo: false,
+      	editTodoText: this.addTodoItemText,
+      });
       this.addTodoItemText = "";
       this.submitBtnVisible = !this.submitBtnVisible;
     },
     deleteTodoItem(todo) {
       let itemIndex = this.todos.indexOf(todo);
       this.todos.splice(itemIndex, 1);
-    }
+    },
+    editTodo(todo) {
+      todo.text = todo.editTodoText; 
+      todo.editTodo = false;
+    },
   }
 };
 </script>
