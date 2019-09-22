@@ -13,7 +13,6 @@
   color: #2c3e50;
   width: 100%;
   height: 100%;
-  display: flex;
 }
 
 body {
@@ -50,6 +49,15 @@ body {
 
 .done {
   text-decoration: line-through;
+}
+
+.overlay {
+  z-index: 9999;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: #00000021;
+  display: flex;
 }
 
 /* width */
