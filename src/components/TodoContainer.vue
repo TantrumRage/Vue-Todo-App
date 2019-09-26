@@ -7,39 +7,42 @@
       <div class="row" v-for="todo in todos">
         <div class="col-2" v-if="!todo.editTodo">
           <span>
-            <input type="checkbox" class="pointer" :checked="todo.done" 
-            @click="todo.done = !todo.done" />
+            <input
+              type="checkbox"
+              class="pointer"
+              :checked="todo.done"
+              @click="todo.done = !todo.done"
+            />
           </span>
         </div>
         <div class="col-7 text-left pl-0" v-if="!todo.editTodo">
           <div class="done" v-if="todo.done">
-            {{todo.text}}
+            {{ todo.text }}
           </div>
           <div v-else>
-            {{todo.text}}
-          </div>	
+            {{ todo.text }}
+          </div>
         </div>
         <div class="col-9 text-left p-0 pl-3" v-else>
-          <input type="text" class="form-control" v-model="todo.editTodoText">
+          <input type="text" class="form-control" v-model="todo.editTodoText" />
         </div>
         <div class="col-3">
           <div v-if="todo.editTodo == false">
             <span class="pointer mr-2" @click="todo.editTodo = true">
               <i class="fas fa-edit"></i>
             </span>
-            <span class="pointer" 
-            @click="$emit('toggleDeleteTodo', todo)">
+            <span class="pointer" @click="$emit('toggleDeleteTodo', todo)">
               <i class="fas fa-trash-alt"></i>
-            </span>	
+            </span>
           </div>
           <div v-else>
-          	<span class="pointer mr-2" @click="editTodo(todo)">
+            <span class="pointer mr-2" @click="editTodo(todo)">
               <i class="fas fa-check"></i>
             </span>
             <span class="pointer" @click="cancelEditTodo(todo)">
               <i class="fas fa-times"></i>
-            </span>	
-          </div>	
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -64,28 +67,26 @@
 <script scoped>
 export default {
   name: "TodoContainer",
-  components: {
-  	
-  },
+  components: {},
   mounted() {
-  	this.$root.$on('deleteTodoItem', todo => {
-  		this.deleteTodoItem(todo);
-  	});
+    this.$root.$on("deleteTodoItem", todo => {
+      this.deleteTodoItem(todo);
+    });
   },
   data: function() {
     return {
       todos: [],
       submitBtnVisible: true,
-      addTodoItemText: "",
+      addTodoItemText: ""
     };
   },
   methods: {
     addTodoItem() {
       this.todos.push({
-      	text: this.addTodoItemText,
-      	done: false,
-      	editTodo: false,
-      	editTodoText: this.addTodoItemText,
+        text: this.addTodoItemText,
+        done: false,
+        editTodo: false,
+        editTodoText: this.addTodoItemText
       });
       this.addTodoItemText = "";
       this.submitBtnVisible = !this.submitBtnVisible;
@@ -95,7 +96,7 @@ export default {
       this.todos.splice(itemIndex, 1);
     },
     editTodo(todo) {
-      todo.text = todo.editTodoText; 
+      todo.text = todo.editTodoText;
       todo.editTodo = false;
     },
     cancelEditTodo(todo) {

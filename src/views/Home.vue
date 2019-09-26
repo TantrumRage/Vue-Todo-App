@@ -1,14 +1,16 @@
 <template>
   <div class="h-100 w-100">
-  	<prompt-box-delete-todo 
-  	v-show="deleteTodoVisible" 
-  	v-on:toggleDeleteTodo="toggleDeleteTodo"></prompt-box-delete-todo>
-  	<div class="d-flex h-100 w-100">
-  	  <div class="home m-auto border">
-  	    <todo-container 
-  	    v-on:toggleDeleteTodo="toggleDeleteTodo"></todo-container>
-  	  </div>	
-  	</div>
+    <prompt-box-delete-todo
+      v-show="deleteTodoVisible"
+      v-on:toggleDeleteTodo="toggleDeleteTodo"
+    ></prompt-box-delete-todo>
+    <div class="d-flex h-100 w-100">
+      <div class="home m-auto border">
+        <todo-container
+          v-on:toggleDeleteTodo="toggleDeleteTodo"
+        ></todo-container>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,20 +25,20 @@ export default {
     PromptBoxDeleteTodo
   },
   data: function() {
-  	return {
-  		deleteTodoVisible: false,
-  	}
+    return {
+      deleteTodoVisible: false
+    };
   },
   methods: {
-  	toggleDeleteTodo: function(todo) {
-  	  this.$root.$emit('passDataToDelete', todo);	
-  	  this.deleteTodoVisible = !this.deleteTodoVisible;
-  	}
+    toggleDeleteTodo: function(todo) {
+      this.$root.$emit("passDataToDelete", todo);
+      this.deleteTodoVisible = !this.deleteTodoVisible;
+    }
   },
   mounted() {
-  	this.$root.$on('deleteTodoItem', todo => {
-  	  this.deleteTodoVisible = !this.deleteTodoVisible;
-  	});
+    this.$root.$on("deleteTodoItem", () => {
+      this.deleteTodoVisible = !this.deleteTodoVisible;
+    });
   }
 };
 </script>
