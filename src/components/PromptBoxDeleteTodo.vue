@@ -5,26 +5,26 @@
   	  	<div class="card-header text-center">
   	  	  <div class="row">
   	  	  	<div class="col-8 text-left">
-  	  	  	  {{prompt.head}}
+  	  	  	  Delete todo?
   	  	    </div>
   	  	    <div class="col-4 text-right pointer p-0">
-  	  	      <span class="p-2"  @click="$emit('togglePopupBox')">
+  	  	      <span class="p-2"  @click="$emit('toggleDeleteTodo')">
   	  	      	<i class="fas fa-times-circle"></i>
   	  	      </span>
   	  	    </div>
   	  	  </div>
   	  	</div>
   	  	<div class="card-body">
-  	  	  {{prompt.body}}
+  	  	  Are you sure you want to delete this todo?
   	  	</div>
   	  	<div class="card-footer">
   	  	  <div class="col-12 d-block text-right">
   	  	  	<button class="btn btn-primary btn-sm mr-2"
   	  	  	@click="child.$root.$emit('deleteTodoItem', todo)">
-  	  	  	  YES
+  	  	  	  Delete
   	  	  	</button>
-  	  	  	<button class="btn btn-primary btn-sm"@click="$emit('togglePopupBox')">
-  	  	  	  NO
+  	  	  	<button class="btn btn-primary btn-sm"@click="$emit('toggleDeleteTodo')">
+  	  	  	  Cancel
   	  	  	</button>
   	  	  </div>
   	  	</div>
@@ -36,10 +36,7 @@
 
 <script>
 export default {
-  name: "PromptBox",
-  props: {
-    prompt: Object,
-  },
+  name: "PromptBoxDeleteTodo",
   data: function() {
   	return {
   	  todo: {},
@@ -47,7 +44,7 @@ export default {
   	}
   },
   mounted() {
-  	this.$root.$on('passDataTodelete', todo => {
+  	this.$root.$on('passDataToDelete', todo => {
   	  this.todo = todo;
   	});
   }

@@ -28,7 +28,7 @@
               <i class="fas fa-edit"></i>
             </span>
             <span class="pointer" 
-            @click="$emit('togglePopupBox', todo, 'delete', promptTypes.delete)">
+            @click="$emit('toggleDeleteTodo', todo)">
               <i class="fas fa-trash-alt"></i>
             </span>	
           </div>
@@ -77,12 +77,6 @@ export default {
       todos: [],
       submitBtnVisible: true,
       addTodoItemText: "",
-      promptTypes: {
-        'delete': {
-          head: 'Delete Todo?',
-          body: 'Are you sure you want to delete this todo?',
-        }
-      },
     };
   },
   methods: {
