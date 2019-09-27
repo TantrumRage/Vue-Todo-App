@@ -85,12 +85,17 @@ export default {
   },
   methods: {
     addTodoItem() {
-      this.todos.push({
-        text: this.addTodoItemText,
-        done: false,
-        editTodo: false,
-        editTodoText: this.addTodoItemText
-      });
+      let newTodoItem = this.validateInput(this.addTodoItemText);
+      if(newTodoItem !== false) {
+      	this.todos.push({
+          text: newTodoItem,
+          done: false,
+          editTodo: false,
+          editTodoText: newTodoItem
+        });
+      }else {
+      	alert("Empty values is not allowed.");
+      }
       this.addTodoItemText = "";
       this.submitBtnVisible = !this.submitBtnVisible;
     },
@@ -105,6 +110,20 @@ export default {
     cancelEditTodo(todo) {
       todo.editTodoText = todo.text;
       todo.editTodo = false;
+    },
+    // returns false if input is empty 
+    // returns the new input after validation
+    validateInput(input) {
+      if(input !== "") {
+        input = input.trim();
+        if(input !== "") {
+        	return input;
+        }else{
+        	return false;
+        }	
+      }else{
+      	return false;
+      }
     }
   }
 };
