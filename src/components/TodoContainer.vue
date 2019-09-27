@@ -36,7 +36,7 @@
             </span>
           </div>
           <div v-else>
-            <span class="pointer mr-2" @click="editTodo(todo)">
+            <span class="pointer mr-2" @click="$emit('toggleEditTodo', todo)">
               <i class="fas fa-check"></i>
             </span>
             <span class="pointer" @click="cancelEditTodo(todo)">
@@ -72,6 +72,9 @@ export default {
     this.$root.$on("deleteTodoItem", todo => {
       this.deleteTodoItem(todo);
     });
+    this.$root.$on("editTodoItem", todo => {
+      this.editTodoItem(todo);
+    });
   },
   data: function() {
     return {
@@ -95,7 +98,7 @@ export default {
       let itemIndex = this.todos.indexOf(todo);
       this.todos.splice(itemIndex, 1);
     },
-    editTodo(todo) {
+    editTodoItem(todo) {
       todo.text = todo.editTodoText;
       todo.editTodo = false;
     },
