@@ -6,13 +6,9 @@
     <div id="todo-content" class="col-12 text-center pt-2">
       <div class="row" v-for="todo in todos">
         <div class="col-2" v-if="!todo.editTodo">
-          <span>
-            <input
-              type="checkbox"
-              class="pointer"
-              :checked="todo.done"
-              @click="todo.done = !todo.done"
-            />
+          <span class="pointer" @click="todo.done = !todo.done">
+            <i class="far fa-check-square" v-show="todo.done"></i>
+            <i class="far fa-square" v-show="!todo.done"></i>
           </span>
         </div>
         <div class="col-7 text-left pl-0" v-if="!todo.editTodo">
@@ -80,7 +76,7 @@ export default {
     return {
       todos: [],
       submitBtnVisible: true,
-      addTodoItemText: ""
+      addTodoItemText: "",
     };
   },
   methods: {
