@@ -3,8 +3,9 @@
     <div id="todo-header" class="col-12">
       <h1 class="text-center border-bottom">Todo</h1>
     </div>
-    <div id="todo-content" class="col-12 text-center pt-2">
-      <div class="row" v-for="todo in todos">
+    <div id="todo-content" class="col-12 text-center pt-4">
+      <div class="row pl-3 pr-3" v-for="todo in todos">
+      	<div class="col-12 p-0 pt-2 pb-2 d-flex border-bottom">
         <div class="col-2" v-if="!todo.editTodo">
           <span class="pointer" @click="todo.done = !todo.done">
             <i class="far fa-check-square" v-show="todo.done"></i>
@@ -39,6 +40,7 @@
               <i class="fas fa-times"></i>
             </span>
           </div>
+        </div>
         </div>
       </div>
     </div>
