@@ -52,10 +52,14 @@
       >
         Add New
       </button>
-      <div v-show="!submitBtnVisible">
-        <input type="text" class="form-control" v-model="addTodoItemText" />
-        <button class="btn btn-sm btn-success mt-2" @click="addTodoItem()">
+      <div class="text-right" v-show="!submitBtnVisible">
+        <input type="text" class="form-control mb-2" v-model="addTodoItemText" />
+        <button class="btn btn-sm btn-success mt-2 mr-2" @click="addTodoItem()">
           Done
+        </button>
+        <button class="btn btn-sm btn-secondary mt-2" 
+        @click="submitBtnVisible = ! submitBtnVisible">
+          Cancel
         </button>
       </div>
     </div>
