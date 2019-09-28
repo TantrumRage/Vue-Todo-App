@@ -46,7 +46,7 @@
     </div>
     <div id="todo-footer" class="col-12 bg-light text-center p-2 pb-4">
       <button
-        class="btn btn-sm btn-outline-success"
+        class="btn btn-sm btn-outline-success font-weight-bold"
         v-show="submitBtnVisible"
         @click="submitBtnVisible = !submitBtnVisible"
       >
@@ -54,10 +54,11 @@
       </button>
       <div class="text-right" v-show="!submitBtnVisible">
         <input type="text" class="form-control mb-2" v-model="addTodoItemText" />
-        <button class="btn btn-sm btn-success mt-2 mr-2" @click="addTodoItem()">
+        <button class="btn btn-sm btn-success mt-2 mr-2 font-weight-bold" 
+        @click="addTodoItem()">
           Done
         </button>
-        <button class="btn btn-sm btn-secondary mt-2" 
+        <button class="btn btn-sm btn-outline-none mt-2 font-weight-bold" 
         @click="submitBtnVisible = ! submitBtnVisible">
           Cancel
         </button>
