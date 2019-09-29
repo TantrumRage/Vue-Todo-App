@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-3 d-flex">
           <div v-if="todo.editTodo == false">
             <span class="pointer mr-2" @click="todo.editTodo = true">
               <i class="fas fa-edit"></i>
@@ -48,11 +48,11 @@
               <i class="fas fa-trash-alt"></i>
             </span>
           </div>
-          <div v-else>
-            <span class="pointer mr-2" @click="$emit('toggleEditTodo', todo)">
+          <div class="m-auto" v-else>
+            <span class="pointer p-1" @click="$emit('toggleEditTodo', todo)">
               <i class="fas fa-check"></i>
             </span>
-            <span class="pointer" @click="cancelEditTodo(todo)">
+            <span class="pointer p-1" @click="cancelEditTodo(todo)">
               <i class="fas fa-times"></i>
             </span>
           </div>
