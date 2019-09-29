@@ -60,6 +60,21 @@ body {
   display: flex;
 }
 
+.textbox-with-cleartext {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.clear-text {
+  height: calc(1.5em + .75rem + 2px);
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-left: none;
+  display: flex;
+  cursor: pointer;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;

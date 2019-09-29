@@ -53,7 +53,25 @@
         Add New
       </button>
       <div class="text-right" v-show="!submitBtnVisible">
-        <input type="text" class="form-control mb-2" v-model="addTodoItemText" />
+        <div class="row">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-10 pr-0">
+                <input type="text" class="form-control mb-2 textbox-with-cleartext" v-model="addTodoItemText" />
+              </div>
+              <div class="col-2 pl-0">
+                <div class="clear-text" @click="addTodoItemText = ''">
+                  <span class="m-auto">
+                    <i class="fas fa-times"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        
         <button class="btn btn-sm btn-success mt-2 mr-2 font-weight-bold" 
         @click="addTodoItem()">
           Done
