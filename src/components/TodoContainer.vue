@@ -68,7 +68,7 @@
 </template>
 
 <script scoped>
-import validateInputMixin from '../mixins/validateInputMixin';
+import validateInputMixin from '@/mixins/validateInputMixin';
 
 export default {
   name: "TodoContainer",

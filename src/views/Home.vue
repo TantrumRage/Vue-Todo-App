@@ -26,6 +26,8 @@
 import TodoContainer from "@/components/TodoContainer.vue";
 import PromptBoxDeleteTodo from "@/components/PromptBoxDeleteTodo.vue";
 import PromptBoxEditTodo from "@/components/PromptBoxEditTodo.vue";
+import validateInputMixin from '@/mixins/validateInputMixin';
+
 export default {
   name: "home",
   components: {
@@ -44,9 +46,19 @@ export default {
       this.$root.$emit("passDataToDelete", todo);
       this.deleteTodoVisible = !this.deleteTodoVisible;
     },
-    toggleEditTodo: function(todo) {
-      this.$root.$emit("passDataToEdit", todo);
-      this.editTodoVisible = !this.editTodoVisible;
+    toggleEditTodo(todo) {
+      if(todo !== undefined){
+        if(this.validateInput(todo.editTodoText) !== false) {
+      	  this.$root.$emit("passDataToEdit", todo);
+          this.editTodoVisible = !this.editTodoVisible;
+        }else {
+      	  alert("Empty value is not allowed!");
+        }	
+      }else {
+      	this.editTodoVisible = !this.editTodoVisible;
+      }
+      
+      
     }
   },
   mounted() {
@@ -56,6 +68,7 @@ export default {
     this.$root.$on("editTodoItem", () => {
       this.editTodoVisible = !this.editTodoVisible;
     });
-  }
+  },
+  mixins: [validateInputMixin]
 };
 </script>
