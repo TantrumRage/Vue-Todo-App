@@ -21,7 +21,23 @@
           </div>
         </div>
         <div class="col-9 text-left p-0 pl-3" v-else>
-          <input type="text" class="form-control" v-model="todo.editTodoText" />
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-10 pr-0">
+                  <input type="text" class="form-control textbox-with-cleartext" 
+                  v-model="todo.editTodoText" />
+                </div>
+                <div class="col-2 pl-0">
+                  <div class="clear-text" @click="todo.editTodoText = ''">
+                    <span class="m-auto">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-3">
           <div v-if="todo.editTodo == false">
