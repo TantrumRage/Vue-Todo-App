@@ -1,9 +1,17 @@
 <template>
   <div id="todo-container" class="row w-100 h-100 bg-light m-0">
     <div id="todo-header" class="col-12">
-      <h1 class="text-center border-bottom">Todo</h1>
+      <h2 class="text-center border-bottom">{{todoListTitle}}</h2>
     </div>
-    <div id="todo-content" class="col-12 text-center pt-4">
+    <div class="text-right pt-1 pr-3" v-show="showAddTodo">
+      <button class="btn btn-primary btn-sm"
+      @click="showAllTodoLists()">
+        Go back
+      </button>
+    </div>
+    <div id="todo-content" class="col-12 text-center">
+      <todo-lists v-show="!showAddTodo"></todo-lists>
+      <div class="p-1" v-show="showAddTodo">
       <div class="row pl-3 pr-3" v-for="todo in todos">
       	<div class="col-12 p-0 pt-2 pb-2 d-flex border-bottom">
         <div class="col-2" v-if="!todo.editTodo">
@@ -59,14 +67,16 @@
         </div>
         </div>
       </div>
+      </div>
     </div>
-    <div id="todo-footer" class="col-12 bg-light text-center p-2 pb-4">
+    <div id="todo-footer" class="col-12 bg-light text-center p-2 pb-4"
+    v-show="showAddTodo">
       <button
         class="btn btn-sm btn-outline-success font-weight-bold"
         v-show="submitBtnVisible"
         @click="submitBtnVisible = !submitBtnVisible"
       >
-        Add New
+        Add Todo
       </button>
       <div class="text-right" v-show="!submitBtnVisible">
         <div class="row">
@@ -103,10 +113,14 @@
 
 <script scoped>
 import validateInputMixin from '@/mixins/validateInputMixin';
+import TodoLists from '@/components/TodoLists';
 
 export default {
   name: "TodoContainer",
-  components: {},
+  components: {
+    TodoLists
+  },
+  props: ["todoTitle"],
   mounted() {
     this.$root.$on("deleteTodoItem", todo => {
       this.deleteTodoItem(todo);
@@ -114,12 +128,19 @@ export default {
     this.$root.$on("editTodoItem", todo => {
       this.editTodoItem(todo);
     });
+    this.$root.$on("selectTodoList", (todolist, todos) => {
+      this.todoListTitle = todolist;
+      this.todos = todos;
+      this.showAddTodo = true;
+    });
   },
   data: function() {
     return {
+      todoListTitle: "Todo Lists",
       todos: [],
       submitBtnVisible: true,
       addTodoItemText: "",
+      showAddTodo: false,
     };
   },
   methods: {
@@ -149,6 +170,10 @@ export default {
     cancelEditTodo(todo) {
       todo.editTodoText = todo.text;
       todo.editTodo = false;
+    },
+    showAllTodoLists() {
+      this.showAddTodo = !this.showAddTodo;
+      this.todoListTitle = "Todo Lists";
     },
   },
   mixins: [validateInputMixin]

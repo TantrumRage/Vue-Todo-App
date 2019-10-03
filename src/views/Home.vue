@@ -38,7 +38,7 @@ export default {
   data: function() {
     return {
       deleteTodoVisible: false,
-      editTodoVisible: false
+      editTodoVisible: false,
     };
   },
   methods: {
