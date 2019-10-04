@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import validateInputMixin from '@/mixins/validateInputMixin';
 export default {
   name: "TodoLists",
   data: function() {
@@ -51,14 +52,21 @@ export default {
   },
   methods: {
   	createNewTodoList() {
-  	  this.todoLists.push({
-  	  	text: this.newTodoList, 
-  	  	todos: [],
-  	  });
-  	  this.newTodoList = '';
-  	  this.createNewList = !this.createNewList;
+  	  let newTodoList = this.validateInput(this.newTodoList);
+
+  	  if(newTodoList !== false) {
+		this.todoLists.push({
+  	  	  text: this.newTodoList, 
+  	  	  todos: [],
+  	    });
+  	    this.newTodoList = '';
+  	    this.createNewList = !this.createNewList;
+  	  }else{
+  	  	alert('Empty values is not allowed!');
+  	  }	  
   	},
-  }
+  },
+  mixins: [validateInputMixin],
 };
 </script>
 
