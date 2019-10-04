@@ -10,6 +10,8 @@
       v-on:toggleEditTodo="toggleEditTodo"
     ></prompt-box-edit-todo>
 
+    <prompt-box-delete-todo-list></prompt-box-delete-todo-list>
+
     <div class="d-flex h-100 w-100">
       <div class="home m-auto border">
         <todo-container
@@ -27,13 +29,15 @@ import TodoContainer from "@/components/TodoContainer.vue";
 import PromptBoxDeleteTodo from "@/components/PromptBoxDeleteTodo.vue";
 import PromptBoxEditTodo from "@/components/PromptBoxEditTodo.vue";
 import validateInputMixin from '@/mixins/validateInputMixin';
+import PromptBoxDeleteTodoList from "@/components/PromptBoxDeleteTodoList.vue";
 
 export default {
   name: "home",
   components: {
     TodoContainer,
     PromptBoxDeleteTodo,
-    PromptBoxEditTodo
+    PromptBoxEditTodo,
+    PromptBoxDeleteTodoList,
   },
   data: function() {
     return {

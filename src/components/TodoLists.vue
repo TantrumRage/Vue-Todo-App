@@ -29,10 +29,16 @@
 	  </div>
   	</div>
   	
-  	<div class="row text-left" v-for="todolist in todoLists">
-  	  <div class="col-12 pt-2 border-top pointer"
+  	<div class="row text-left border-top pt-2" v-for="todolist in todoLists">
+  	  <div class="col-9 pointer"
   	  @click="thisComponent.$root.$emit('selectTodoList', todolist.text, todolist.todos)">
   	  	{{todolist.text}}
+  	  </div>
+  	  <div class="col-3 p-0 d-flex">
+  	  	<span class="m-auto pointer"
+  	  	@click="thisComponent.$root.$emit('promptDeleteTodoList', todolist)">
+  	  	  <i class="fas fa-trash-alt"></i>
+  	  	</span>
   	  </div>
   	</div>
   </div>
@@ -50,6 +56,13 @@ export default {
   	  todoLists: [],
   	}
   },
+  mounted() {
+  	this.$root.$on('deleteTodoList', (todolist) => {
+  	  this.deleteTodoList(todolist);
+
+  	  this.$root.$emit('promptDeleteTodoList');
+  	});
+  },
   methods: {
   	createNewTodoList() {
   	  let newTodoList = this.validateInput(this.newTodoList);
@@ -65,6 +78,10 @@ export default {
   	  	alert('Empty values is not allowed!');
   	  }	  
   	},
+  	deleteTodoList(todolist) {
+  	  let listIndex = this.todoLists.indexOf(todolist);
+  	  this.todoLists.splice(listIndex, 1);
+  	}
   },
   mixins: [validateInputMixin],
 };
